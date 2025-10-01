@@ -6,16 +6,19 @@ part of 'privacy_policy.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PrivacyPolicyImpl _$$PrivacyPolicyImplFromJson(Map<String, dynamic> json) =>
-    _$PrivacyPolicyImpl(
-      body: json['body'] as String?,
-      handle: json['handle'] as String?,
-      id: json['id'] as String?,
-      title: json['title'] as String?,
-      url: json['url'] as String?,
-    );
+_PrivacyPolicy _$PrivacyPolicyFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_PrivacyPolicy', json, ($checkedConvert) {
+      final val = _PrivacyPolicy(
+        body: $checkedConvert('body', (v) => v as String?),
+        handle: $checkedConvert('handle', (v) => v as String?),
+        id: $checkedConvert('id', (v) => v as String?),
+        title: $checkedConvert('title', (v) => v as String?),
+        url: $checkedConvert('url', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$PrivacyPolicyImplToJson(_$PrivacyPolicyImpl instance) =>
+Map<String, dynamic> _$PrivacyPolicyToJson(_PrivacyPolicy instance) =>
     <String, dynamic>{
       'body': instance.body,
       'handle': instance.handle,

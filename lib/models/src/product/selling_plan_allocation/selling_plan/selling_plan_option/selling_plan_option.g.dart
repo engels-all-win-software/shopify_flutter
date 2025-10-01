@@ -6,16 +6,14 @@ part of 'selling_plan_option.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SellingPlanOptionImpl _$$SellingPlanOptionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SellingPlanOptionImpl(
-      name: json['name'] as String,
-      value: json['value'] as String,
-    );
+_SellingPlanOption _$SellingPlanOptionFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_SellingPlanOption', json, ($checkedConvert) {
+      final val = _SellingPlanOption(
+        name: $checkedConvert('name', (v) => v as String),
+        value: $checkedConvert('value', (v) => v as String),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$SellingPlanOptionImplToJson(
-        _$SellingPlanOptionImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'value': instance.value,
-    };
+Map<String, dynamic> _$SellingPlanOptionToJson(_SellingPlanOption instance) =>
+    <String, dynamic>{'name': instance.name, 'value': instance.value};

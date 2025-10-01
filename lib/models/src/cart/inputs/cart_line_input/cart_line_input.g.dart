@@ -6,20 +6,29 @@ part of 'cart_line_input.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CartLineInputImpl _$$CartLineInputImplFromJson(Map<String, dynamic> json) =>
-    _$CartLineInputImpl(
-      merchandiseId: json['merchandiseId'] as String,
-      quantity: (json['quantity'] as num).toInt(),
-      sellingPlanId: json['sellingPlanId'] as String?,
-      attributes: (json['attributes'] as List<dynamic>?)
-              ?.map((e) => e == null
-                  ? null
-                  : AttributeInput.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-    );
+_CartLineInput _$CartLineInputFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_CartLineInput', json, ($checkedConvert) {
+      final val = _CartLineInput(
+        merchandiseId: $checkedConvert('merchandiseId', (v) => v as String),
+        quantity: $checkedConvert('quantity', (v) => (v as num).toInt()),
+        sellingPlanId: $checkedConvert('sellingPlanId', (v) => v as String?),
+        attributes: $checkedConvert(
+          'attributes',
+          (v) =>
+              (v as List<dynamic>?)
+                  ?.map(
+                    (e) => e == null
+                        ? null
+                        : AttributeInput.fromJson(e as Map<String, dynamic>),
+                  )
+                  .toList() ??
+              const [],
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$CartLineInputImplToJson(_$CartLineInputImpl instance) =>
+Map<String, dynamic> _$CartLineInputToJson(_CartLineInput instance) =>
     <String, dynamic>{
       'merchandiseId': instance.merchandiseId,
       'quantity': instance.quantity,

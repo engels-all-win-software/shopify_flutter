@@ -6,32 +6,34 @@ part of 'mailing_address_input.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MailingAddressInputImpl _$$MailingAddressInputImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MailingAddressInputImpl(
-      address1: json['address1'] as String,
-      address2: json['address2'] as String?,
-      city: json['city'] as String?,
-      company: json['company'] as String?,
-      country: json['country'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      phone: json['phone'] as String?,
-      province: json['province'] as String?,
-      zip: json['zip'] as String?,
-    );
+_MailingAddressInput _$MailingAddressInputFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MailingAddressInput', json, ($checkedConvert) {
+      final val = _MailingAddressInput(
+        address1: $checkedConvert('address1', (v) => v as String),
+        address2: $checkedConvert('address2', (v) => v as String?),
+        city: $checkedConvert('city', (v) => v as String?),
+        company: $checkedConvert('company', (v) => v as String?),
+        country: $checkedConvert('country', (v) => v as String?),
+        firstName: $checkedConvert('firstName', (v) => v as String?),
+        lastName: $checkedConvert('lastName', (v) => v as String?),
+        phone: $checkedConvert('phone', (v) => v as String?),
+        province: $checkedConvert('province', (v) => v as String?),
+        zip: $checkedConvert('zip', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$MailingAddressInputImplToJson(
-        _$MailingAddressInputImpl instance) =>
-    <String, dynamic>{
-      'address1': instance.address1,
-      'address2': instance.address2,
-      'city': instance.city,
-      'company': instance.company,
-      'country': instance.country,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'phone': instance.phone,
-      'province': instance.province,
-      'zip': instance.zip,
-    };
+Map<String, dynamic> _$MailingAddressInputToJson(
+  _MailingAddressInput instance,
+) => <String, dynamic>{
+  'address1': instance.address1,
+  'address2': instance.address2,
+  'city': instance.city,
+  'company': instance.company,
+  'country': instance.country,
+  'firstName': instance.firstName,
+  'lastName': instance.lastName,
+  'phone': instance.phone,
+  'province': instance.province,
+  'zip': instance.zip,
+};

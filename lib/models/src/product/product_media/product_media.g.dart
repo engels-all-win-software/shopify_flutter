@@ -6,18 +6,23 @@ part of 'product_media.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductVariantImpl _$$ProductVariantImplFromJson(Map<String, dynamic> json) =>
-    _$ProductVariantImpl(
-      id: json['id'] as String,
-      mediaContentType: json['mediaContentType'] as String,
-      image: json['image'] == null
-          ? null
-          : ShopifyImage.fromJson(json['image'] as Map<String, dynamic>),
-      alt: json['alt'] as String?,
-    );
+_ProductVariant _$ProductVariantFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_ProductVariant', json, ($checkedConvert) {
+  final val = _ProductVariant(
+    id: $checkedConvert('id', (v) => v as String),
+    mediaContentType: $checkedConvert('mediaContentType', (v) => v as String),
+    image: $checkedConvert(
+      'image',
+      (v) =>
+          v == null ? null : ShopifyImage.fromJson(v as Map<String, dynamic>),
+    ),
+    alt: $checkedConvert('alt', (v) => v as String?),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$ProductVariantImplToJson(
-        _$ProductVariantImpl instance) =>
+Map<String, dynamic> _$ProductVariantToJson(_ProductVariant instance) =>
     <String, dynamic>{
       'id': instance.id,
       'mediaContentType': instance.mediaContentType,

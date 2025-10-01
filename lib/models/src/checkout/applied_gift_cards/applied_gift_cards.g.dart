@@ -6,17 +6,23 @@ part of 'applied_gift_cards.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AppliedGiftCardsImpl _$$AppliedGiftCardsImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AppliedGiftCardsImpl(
-      amountUsedV2:
-          PriceV2.fromJson(json['amountUsedV2'] as Map<String, dynamic>),
-      balanceV2: PriceV2.fromJson(json['balanceV2'] as Map<String, dynamic>),
-      id: json['id'] as String,
-    );
+_AppliedGiftCards _$AppliedGiftCardsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_AppliedGiftCards', json, ($checkedConvert) {
+      final val = _AppliedGiftCards(
+        amountUsedV2: $checkedConvert(
+          'amountUsedV2',
+          (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        balanceV2: $checkedConvert(
+          'balanceV2',
+          (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        id: $checkedConvert('id', (v) => v as String),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$AppliedGiftCardsImplToJson(
-        _$AppliedGiftCardsImpl instance) =>
+Map<String, dynamic> _$AppliedGiftCardsToJson(_AppliedGiftCards instance) =>
     <String, dynamic>{
       'amountUsedV2': instance.amountUsedV2.toJson(),
       'balanceV2': instance.balanceV2.toJson(),

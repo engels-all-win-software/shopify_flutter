@@ -6,14 +6,20 @@ part of 'line_items.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LineItemsImpl _$$LineItemsImplFromJson(Map<String, dynamic> json) =>
-    _$LineItemsImpl(
-      lineItemList: (json['lineItemList'] as List<dynamic>)
-          .map((e) => LineItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_LineItems _$LineItemsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_LineItems', json, ($checkedConvert) {
+      final val = _LineItems(
+        lineItemList: $checkedConvert(
+          'lineItemList',
+          (v) => (v as List<dynamic>)
+              .map((e) => LineItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LineItemsImplToJson(_$LineItemsImpl instance) =>
+Map<String, dynamic> _$LineItemsToJson(_LineItems instance) =>
     <String, dynamic>{
       'lineItemList': instance.lineItemList.map((e) => e.toJson()).toList(),
     };

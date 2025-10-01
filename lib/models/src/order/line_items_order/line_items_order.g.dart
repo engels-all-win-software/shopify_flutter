@@ -6,16 +6,22 @@ part of 'line_items_order.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LineItemsOrderImpl _$$LineItemsOrderImplFromJson(Map<String, dynamic> json) =>
-    _$LineItemsOrderImpl(
-      lineItemOrderList: (json['lineItemOrderList'] as List<dynamic>)
-          .map((e) => LineItemOrder.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_LineItemsOrder _$LineItemsOrderFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_LineItemsOrder', json, ($checkedConvert) {
+      final val = _LineItemsOrder(
+        lineItemOrderList: $checkedConvert(
+          'lineItemOrderList',
+          (v) => (v as List<dynamic>)
+              .map((e) => LineItemOrder.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LineItemsOrderImplToJson(
-        _$LineItemsOrderImpl instance) =>
+Map<String, dynamic> _$LineItemsOrderToJson(_LineItemsOrder instance) =>
     <String, dynamic>{
-      'lineItemOrderList':
-          instance.lineItemOrderList.map((e) => e.toJson()).toList(),
+      'lineItemOrderList': instance.lineItemOrderList
+          .map((e) => e.toJson())
+          .toList(),
     };

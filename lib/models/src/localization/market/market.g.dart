@@ -6,13 +6,16 @@ part of 'market.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MarketImpl _$$MarketImplFromJson(Map<String, dynamic> json) => _$MarketImpl(
-      id: json['id'] as String,
-      handle: json['handle'] as String,
-    );
+_Market _$MarketFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_Market', json, ($checkedConvert) {
+      final val = _Market(
+        id: $checkedConvert('id', (v) => v as String),
+        handle: $checkedConvert('handle', (v) => v as String),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$MarketImplToJson(_$MarketImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'handle': instance.handle,
-    };
+Map<String, dynamic> _$MarketToJson(_Market instance) => <String, dynamic>{
+  'id': instance.id,
+  'handle': instance.handle,
+};

@@ -6,18 +6,19 @@ part of 'subscription_policy.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SubscriptionPolicyImpl _$$SubscriptionPolicyImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SubscriptionPolicyImpl(
-      body: json['body'] as String?,
-      handle: json['handle'] as String?,
-      id: json['id'] as String?,
-      title: json['title'] as String?,
-      url: json['url'] as String?,
-    );
+_SubscriptionPolicy _$SubscriptionPolicyFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_SubscriptionPolicy', json, ($checkedConvert) {
+      final val = _SubscriptionPolicy(
+        body: $checkedConvert('body', (v) => v as String?),
+        handle: $checkedConvert('handle', (v) => v as String?),
+        id: $checkedConvert('id', (v) => v as String?),
+        title: $checkedConvert('title', (v) => v as String?),
+        url: $checkedConvert('url', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$SubscriptionPolicyImplToJson(
-        _$SubscriptionPolicyImpl instance) =>
+Map<String, dynamic> _$SubscriptionPolicyToJson(_SubscriptionPolicy instance) =>
     <String, dynamic>{
       'body': instance.body,
       'handle': instance.handle,

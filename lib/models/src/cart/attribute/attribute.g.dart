@@ -6,14 +6,14 @@ part of 'attribute.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AttributeImpl _$$AttributeImplFromJson(Map<String, dynamic> json) =>
-    _$AttributeImpl(
-      key: json['key'] as String,
-      value: json['value'] as String?,
-    );
+_Attribute _$AttributeFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_Attribute', json, ($checkedConvert) {
+      final val = _Attribute(
+        key: $checkedConvert('key', (v) => v as String),
+        value: $checkedConvert('value', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$AttributeImplToJson(_$AttributeImpl instance) =>
-    <String, dynamic>{
-      'key': instance.key,
-      'value': instance.value,
-    };
+Map<String, dynamic> _$AttributeToJson(_Attribute instance) =>
+    <String, dynamic>{'key': instance.key, 'value': instance.value};

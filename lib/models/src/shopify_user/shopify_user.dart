@@ -9,10 +9,10 @@ part 'shopify_user.g.dart';
 @freezed
 
 /// The shopify user
-class ShopifyUser with _$ShopifyUser {
+abstract class ShopifyUser with _$ShopifyUser {
   /// The shopify user constructor
   factory ShopifyUser({
-    Addresses? address,
+    Addresses? addresses,
     String? createdAt,
     String? displayName,
     String? email,
@@ -26,7 +26,7 @@ class ShopifyUser with _$ShopifyUser {
 
   /// The shopify user from json factory
   factory ShopifyUser.fromGraphJson(Map<String, dynamic> json) => ShopifyUser(
-        address: Addresses.fromGraphJson(json['addresses'] ?? const {}),
+        addresses: Addresses.fromGraphJson(json['addresses'] ?? const {}),
         defaultAddress: json['defaultAddress'] == null
             ? null
             : Address.fromJson(json['defaultAddress']),

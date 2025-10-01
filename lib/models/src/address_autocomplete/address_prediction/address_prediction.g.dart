@@ -6,21 +6,26 @@ part of 'address_prediction.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AddressPredictionImpl _$$AddressPredictionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AddressPredictionImpl(
-      addressId: json['addressId'] as String?,
-      description: json['description'] as String?,
-      matchedSubstrings: (json['matchedSubstrings'] as List<dynamic>?)
-          ?.map((e) => MatchedSubstring.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_AddressPrediction _$AddressPredictionFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_AddressPrediction', json, ($checkedConvert) {
+      final val = _AddressPrediction(
+        addressId: $checkedConvert('addressId', (v) => v as String?),
+        description: $checkedConvert('description', (v) => v as String?),
+        matchedSubstrings: $checkedConvert(
+          'matchedSubstrings',
+          (v) => (v as List<dynamic>?)
+              ?.map((e) => MatchedSubstring.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$AddressPredictionImplToJson(
-        _$AddressPredictionImpl instance) =>
+Map<String, dynamic> _$AddressPredictionToJson(_AddressPrediction instance) =>
     <String, dynamic>{
       'addressId': instance.addressId,
       'description': instance.description,
-      'matchedSubstrings':
-          instance.matchedSubstrings?.map((e) => e.toJson()).toList(),
+      'matchedSubstrings': instance.matchedSubstrings
+          ?.map((e) => e.toJson())
+          .toList(),
     };

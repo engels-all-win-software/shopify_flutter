@@ -6,16 +6,14 @@ part of 'cart_discount_code.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CartDiscountCodeImpl _$$CartDiscountCodeImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CartDiscountCodeImpl(
-      applicable: json['applicable'] as bool?,
-      code: json['code'] as String?,
-    );
+_CartDiscountCode _$CartDiscountCodeFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_CartDiscountCode', json, ($checkedConvert) {
+      final val = _CartDiscountCode(
+        applicable: $checkedConvert('applicable', (v) => v as bool?),
+        code: $checkedConvert('code', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$CartDiscountCodeImplToJson(
-        _$CartDiscountCodeImpl instance) =>
-    <String, dynamic>{
-      'applicable': instance.applicable,
-      'code': instance.code,
-    };
+Map<String, dynamic> _$CartDiscountCodeToJson(_CartDiscountCode instance) =>
+    <String, dynamic>{'applicable': instance.applicable, 'code': instance.code};

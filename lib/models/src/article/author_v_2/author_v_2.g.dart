@@ -6,20 +6,22 @@ part of 'author_v_2.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthorV2Impl _$$AuthorV2ImplFromJson(Map<String, dynamic> json) =>
-    _$AuthorV2Impl(
-      bio: json['bio'] as String?,
-      email: json['email'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      name: json['name'] as String?,
-    );
+_AuthorV2 _$AuthorV2FromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_AuthorV2', json, ($checkedConvert) {
+      final val = _AuthorV2(
+        bio: $checkedConvert('bio', (v) => v as String?),
+        email: $checkedConvert('email', (v) => v as String?),
+        firstName: $checkedConvert('firstName', (v) => v as String?),
+        lastName: $checkedConvert('lastName', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$AuthorV2ImplToJson(_$AuthorV2Impl instance) =>
-    <String, dynamic>{
-      'bio': instance.bio,
-      'email': instance.email,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'name': instance.name,
-    };
+Map<String, dynamic> _$AuthorV2ToJson(_AuthorV2 instance) => <String, dynamic>{
+  'bio': instance.bio,
+  'email': instance.email,
+  'firstName': instance.firstName,
+  'lastName': instance.lastName,
+  'name': instance.name,
+};

@@ -6,25 +6,39 @@ part of 'collection.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CollectionImpl _$$CollectionImplFromJson(Map<String, dynamic> json) =>
-    _$CollectionImpl(
-      title: json['title'] as String,
-      id: json['id'] as String,
-      products: Products.fromJson(json['products'] as Map<String, dynamic>),
-      metafields: (json['metafields'] as List<dynamic>)
-          .map((e) => Metafield.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      cursor: json['cursor'] as String?,
-      description: json['description'] as String?,
-      descriptionHtml: json['descriptionHtml'] as String?,
-      handle: json['handle'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      image: json['image'] == null
-          ? null
-          : ShopifyImage.fromJson(json['image'] as Map<String, dynamic>),
+_Collection _$CollectionFromJson(Map<String, dynamic> json) => $checkedCreate(
+  '_Collection',
+  json,
+  ($checkedConvert) {
+    final val = _Collection(
+      title: $checkedConvert('title', (v) => v as String),
+      id: $checkedConvert('id', (v) => v as String),
+      products: $checkedConvert(
+        'products',
+        (v) => Products.fromJson(v as Map<String, dynamic>),
+      ),
+      metafields: $checkedConvert(
+        'metafields',
+        (v) => (v as List<dynamic>)
+            .map((e) => Metafield.fromJson(e as Map<String, dynamic>))
+            .toList(),
+      ),
+      cursor: $checkedConvert('cursor', (v) => v as String?),
+      description: $checkedConvert('description', (v) => v as String?),
+      descriptionHtml: $checkedConvert('descriptionHtml', (v) => v as String?),
+      handle: $checkedConvert('handle', (v) => v as String?),
+      updatedAt: $checkedConvert('updatedAt', (v) => v as String?),
+      image: $checkedConvert(
+        'image',
+        (v) =>
+            v == null ? null : ShopifyImage.fromJson(v as Map<String, dynamic>),
+      ),
     );
+    return val;
+  },
+);
 
-Map<String, dynamic> _$$CollectionImplToJson(_$CollectionImpl instance) =>
+Map<String, dynamic> _$CollectionToJson(_Collection instance) =>
     <String, dynamic>{
       'title': instance.title,
       'id': instance.id,

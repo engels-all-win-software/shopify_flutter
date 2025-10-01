@@ -6,24 +6,29 @@ part of 'address_details.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AddressDetailsImpl _$$AddressDetailsImplFromJson(Map<String, dynamic> json) =>
-    _$AddressDetailsImpl(
-      address1: json['address1'] as String?,
-      address2: json['address2'] as String?,
-      city: json['city'] as String?,
-      company: json['company'] as String?,
-      completionService: json['completionService'] as String?,
-      country: json['country'] as String?,
-      countryCode: json['countryCode'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
-      province: json['province'] as String?,
-      provinceCode: json['provinceCode'] as String?,
-      zip: json['zip'] as String?,
-    );
+_AddressDetails _$AddressDetailsFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_AddressDetails', json, ($checkedConvert) {
+      final val = _AddressDetails(
+        address1: $checkedConvert('address1', (v) => v as String?),
+        address2: $checkedConvert('address2', (v) => v as String?),
+        city: $checkedConvert('city', (v) => v as String?),
+        company: $checkedConvert('company', (v) => v as String?),
+        completionService: $checkedConvert(
+          'completionService',
+          (v) => v as String?,
+        ),
+        country: $checkedConvert('country', (v) => v as String?),
+        countryCode: $checkedConvert('countryCode', (v) => v as String?),
+        latitude: $checkedConvert('latitude', (v) => (v as num?)?.toDouble()),
+        longitude: $checkedConvert('longitude', (v) => (v as num?)?.toDouble()),
+        province: $checkedConvert('province', (v) => v as String?),
+        provinceCode: $checkedConvert('provinceCode', (v) => v as String?),
+        zip: $checkedConvert('zip', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$AddressDetailsImplToJson(
-        _$AddressDetailsImpl instance) =>
+Map<String, dynamic> _$AddressDetailsToJson(_AddressDetails instance) =>
     <String, dynamic>{
       'address1': instance.address1,
       'address2': instance.address2,

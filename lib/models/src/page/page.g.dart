@@ -6,25 +6,29 @@ part of 'page.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PageImpl _$$PageImplFromJson(Map<String, dynamic> json) => _$PageImpl(
-      body: json['body'] as String,
-      bodySummary: json['bodySummary'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      handle: json['handle'] as String,
-      id: json['id'] as String,
-      title: json['title'] as String,
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
-      onlineStoreUrl: json['onlineStoreUrl'] as String,
-    );
+_Page _$PageFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_Page', json, ($checkedConvert) {
+  final val = _Page(
+    body: $checkedConvert('body', (v) => v as String),
+    bodySummary: $checkedConvert('bodySummary', (v) => v as String),
+    createdAt: $checkedConvert('createdAt', (v) => DateTime.parse(v as String)),
+    handle: $checkedConvert('handle', (v) => v as String),
+    id: $checkedConvert('id', (v) => v as String),
+    title: $checkedConvert('title', (v) => v as String),
+    updatedAt: $checkedConvert('updatedAt', (v) => DateTime.parse(v as String)),
+    onlineStoreUrl: $checkedConvert('onlineStoreUrl', (v) => v as String),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$PageImplToJson(_$PageImpl instance) =>
-    <String, dynamic>{
-      'body': instance.body,
-      'bodySummary': instance.bodySummary,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'handle': instance.handle,
-      'id': instance.id,
-      'title': instance.title,
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'onlineStoreUrl': instance.onlineStoreUrl,
-    };
+Map<String, dynamic> _$PageToJson(_Page instance) => <String, dynamic>{
+  'body': instance.body,
+  'bodySummary': instance.bodySummary,
+  'createdAt': instance.createdAt.toIso8601String(),
+  'handle': instance.handle,
+  'id': instance.id,
+  'title': instance.title,
+  'updatedAt': instance.updatedAt.toIso8601String(),
+  'onlineStoreUrl': instance.onlineStoreUrl,
+};

@@ -6,31 +6,35 @@ part of 'customer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CustomerImpl _$$CustomerImplFromJson(Map<String, dynamic> json) =>
-    _$CustomerImpl(
-      id: json['id'] as String?,
-      email: json['email'] as String?,
-      phone: json['phone'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      displayName: json['displayName'] as String,
-      defaultAddress: json['defaultAddress'] == null
-          ? null
-          : MailingAddress.fromJson(
-              json['defaultAddress'] as Map<String, dynamic>),
-      numberOfOrders: json['numberOfOrders'],
-      acceptsMarketing: json['acceptsMarketing'] as bool?,
-    );
+_Customer _$CustomerFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_Customer', json, ($checkedConvert) {
+  final val = _Customer(
+    id: $checkedConvert('id', (v) => v as String?),
+    email: $checkedConvert('email', (v) => v as String?),
+    phone: $checkedConvert('phone', (v) => v as String?),
+    firstName: $checkedConvert('firstName', (v) => v as String?),
+    lastName: $checkedConvert('lastName', (v) => v as String?),
+    displayName: $checkedConvert('displayName', (v) => v as String),
+    defaultAddress: $checkedConvert(
+      'defaultAddress',
+      (v) =>
+          v == null ? null : MailingAddress.fromJson(v as Map<String, dynamic>),
+    ),
+    numberOfOrders: $checkedConvert('numberOfOrders', (v) => v),
+    acceptsMarketing: $checkedConvert('acceptsMarketing', (v) => v as bool?),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$CustomerImplToJson(_$CustomerImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'email': instance.email,
-      'phone': instance.phone,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'displayName': instance.displayName,
-      'defaultAddress': instance.defaultAddress?.toJson(),
-      'numberOfOrders': instance.numberOfOrders,
-      'acceptsMarketing': instance.acceptsMarketing,
-    };
+Map<String, dynamic> _$CustomerToJson(_Customer instance) => <String, dynamic>{
+  'id': instance.id,
+  'email': instance.email,
+  'phone': instance.phone,
+  'firstName': instance.firstName,
+  'lastName': instance.lastName,
+  'displayName': instance.displayName,
+  'defaultAddress': instance.defaultAddress?.toJson(),
+  'numberOfOrders': instance.numberOfOrders,
+  'acceptsMarketing': instance.acceptsMarketing,
+};

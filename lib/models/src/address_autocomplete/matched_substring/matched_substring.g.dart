@@ -6,16 +6,14 @@ part of 'matched_substring.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MatchedSubstringImpl _$$MatchedSubstringImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MatchedSubstringImpl(
-      length: (json['length'] as num?)?.toInt(),
-      offset: (json['offset'] as num?)?.toInt(),
-    );
+_MatchedSubstring _$MatchedSubstringFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MatchedSubstring', json, ($checkedConvert) {
+      final val = _MatchedSubstring(
+        length: $checkedConvert('length', (v) => (v as num?)?.toInt()),
+        offset: $checkedConvert('offset', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$MatchedSubstringImplToJson(
-        _$MatchedSubstringImpl instance) =>
-    <String, dynamic>{
-      'length': instance.length,
-      'offset': instance.offset,
-    };
+Map<String, dynamic> _$MatchedSubstringToJson(_MatchedSubstring instance) =>
+    <String, dynamic>{'length': instance.length, 'offset': instance.offset};

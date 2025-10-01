@@ -6,36 +6,50 @@ part of 'line_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LineItemImpl _$$LineItemImplFromJson(Map<String, dynamic> json) =>
-    _$LineItemImpl(
-      title: json['title'] as String,
-      quantity: (json['quantity'] as num).toInt(),
-      discountAllocations: (json['discountAllocations'] as List<dynamic>?)
-              ?.map((e) =>
-                  DiscountAllocations.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      customAttributes: (json['customAttributes'] as List<dynamic>?)
-              ?.map((e) => Attribute.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
-      variantId: json['variantId'] as String?,
-      id: json['id'] as String?,
-      variant: json['variant'] == null
-          ? null
-          : ProductVariantCheckout.fromJson(
-              json['variant'] as Map<String, dynamic>),
-    );
+_LineItem _$LineItemFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_LineItem', json, ($checkedConvert) {
+      final val = _LineItem(
+        title: $checkedConvert('title', (v) => v as String),
+        quantity: $checkedConvert('quantity', (v) => (v as num).toInt()),
+        discountAllocations: $checkedConvert(
+          'discountAllocations',
+          (v) =>
+              (v as List<dynamic>?)
+                  ?.map(
+                    (e) =>
+                        DiscountAllocations.fromJson(e as Map<String, dynamic>),
+                  )
+                  .toList() ??
+              const [],
+        ),
+        customAttributes: $checkedConvert(
+          'customAttributes',
+          (v) =>
+              (v as List<dynamic>?)
+                  ?.map((e) => Attribute.fromJson(e as Map<String, dynamic>))
+                  .toList() ??
+              const [],
+        ),
+        variantId: $checkedConvert('variantId', (v) => v as String?),
+        id: $checkedConvert('id', (v) => v as String?),
+        variant: $checkedConvert(
+          'variant',
+          (v) => v == null
+              ? null
+              : ProductVariantCheckout.fromJson(v as Map<String, dynamic>),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LineItemImplToJson(_$LineItemImpl instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'quantity': instance.quantity,
-      'discountAllocations':
-          instance.discountAllocations.map((e) => e.toJson()).toList(),
-      'customAttributes':
-          instance.customAttributes.map((e) => e.toJson()).toList(),
-      'variantId': instance.variantId,
-      'id': instance.id,
-      'variant': instance.variant?.toJson(),
-    };
+Map<String, dynamic> _$LineItemToJson(_LineItem instance) => <String, dynamic>{
+  'title': instance.title,
+  'quantity': instance.quantity,
+  'discountAllocations': instance.discountAllocations
+      .map((e) => e.toJson())
+      .toList(),
+  'customAttributes': instance.customAttributes.map((e) => e.toJson()).toList(),
+  'variantId': instance.variantId,
+  'id': instance.id,
+  'variant': instance.variant?.toJson(),
+};

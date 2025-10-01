@@ -6,35 +6,57 @@ part of 'cart_cost.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CartCostImpl _$$CartCostImplFromJson(Map<String, dynamic> json) =>
-    _$CartCostImpl(
-      checkoutChargeAmount: PriceV2.fromJson(
-          json['checkoutChargeAmount'] as Map<String, dynamic>),
-      subtotalAmount:
-          PriceV2.fromJson(json['subtotalAmount'] as Map<String, dynamic>),
-      subtotalAmountEstimated: json['subtotalAmountEstimated'] as bool,
-      totalAmount:
-          PriceV2.fromJson(json['totalAmount'] as Map<String, dynamic>),
-      totalAmountEstimated: json['totalAmountEstimated'] as bool,
-      totalDutyAmount: json['totalDutyAmount'] == null
-          ? null
-          : PriceV2.fromJson(json['totalDutyAmount'] as Map<String, dynamic>),
-      totalDutyAmountEstimated: json['totalDutyAmountEstimated'] as bool,
-      totalTaxAmount: json['totalTaxAmount'] == null
-          ? null
-          : PriceV2.fromJson(json['totalTaxAmount'] as Map<String, dynamic>),
-      totalTaxAmountEstimated: json['totalTaxAmountEstimated'] as bool,
-    );
+_CartCost _$CartCostFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_CartCost', json, ($checkedConvert) {
+      final val = _CartCost(
+        checkoutChargeAmount: $checkedConvert(
+          'checkoutChargeAmount',
+          (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        subtotalAmount: $checkedConvert(
+          'subtotalAmount',
+          (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        subtotalAmountEstimated: $checkedConvert(
+          'subtotalAmountEstimated',
+          (v) => v as bool,
+        ),
+        totalAmount: $checkedConvert(
+          'totalAmount',
+          (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        totalAmountEstimated: $checkedConvert(
+          'totalAmountEstimated',
+          (v) => v as bool,
+        ),
+        totalDutyAmount: $checkedConvert(
+          'totalDutyAmount',
+          (v) => v == null ? null : PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        totalDutyAmountEstimated: $checkedConvert(
+          'totalDutyAmountEstimated',
+          (v) => v as bool,
+        ),
+        totalTaxAmount: $checkedConvert(
+          'totalTaxAmount',
+          (v) => v == null ? null : PriceV2.fromJson(v as Map<String, dynamic>),
+        ),
+        totalTaxAmountEstimated: $checkedConvert(
+          'totalTaxAmountEstimated',
+          (v) => v as bool,
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$CartCostImplToJson(_$CartCostImpl instance) =>
-    <String, dynamic>{
-      'checkoutChargeAmount': instance.checkoutChargeAmount.toJson(),
-      'subtotalAmount': instance.subtotalAmount.toJson(),
-      'subtotalAmountEstimated': instance.subtotalAmountEstimated,
-      'totalAmount': instance.totalAmount.toJson(),
-      'totalAmountEstimated': instance.totalAmountEstimated,
-      'totalDutyAmount': instance.totalDutyAmount?.toJson(),
-      'totalDutyAmountEstimated': instance.totalDutyAmountEstimated,
-      'totalTaxAmount': instance.totalTaxAmount?.toJson(),
-      'totalTaxAmountEstimated': instance.totalTaxAmountEstimated,
-    };
+Map<String, dynamic> _$CartCostToJson(_CartCost instance) => <String, dynamic>{
+  'checkoutChargeAmount': instance.checkoutChargeAmount.toJson(),
+  'subtotalAmount': instance.subtotalAmount.toJson(),
+  'subtotalAmountEstimated': instance.subtotalAmountEstimated,
+  'totalAmount': instance.totalAmount.toJson(),
+  'totalAmountEstimated': instance.totalAmountEstimated,
+  'totalDutyAmount': instance.totalDutyAmount?.toJson(),
+  'totalDutyAmountEstimated': instance.totalDutyAmountEstimated,
+  'totalTaxAmount': instance.totalTaxAmount?.toJson(),
+  'totalTaxAmountEstimated': instance.totalTaxAmountEstimated,
+};

@@ -6,16 +6,18 @@ part of 'language.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LanguageImpl _$$LanguageImplFromJson(Map<String, dynamic> json) =>
-    _$LanguageImpl(
-      isoCode: json['isoCode'] as String,
-      name: json['name'] as String,
-      endonymName: json['endonymName'] as String,
-    );
+_Language _$LanguageFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_Language', json, ($checkedConvert) {
+      final val = _Language(
+        isoCode: $checkedConvert('isoCode', (v) => v as String),
+        name: $checkedConvert('name', (v) => v as String),
+        endonymName: $checkedConvert('endonymName', (v) => v as String),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LanguageImplToJson(_$LanguageImpl instance) =>
-    <String, dynamic>{
-      'isoCode': instance.isoCode,
-      'name': instance.name,
-      'endonymName': instance.endonymName,
-    };
+Map<String, dynamic> _$LanguageToJson(_Language instance) => <String, dynamic>{
+  'isoCode': instance.isoCode,
+  'name': instance.name,
+  'endonymName': instance.endonymName,
+};

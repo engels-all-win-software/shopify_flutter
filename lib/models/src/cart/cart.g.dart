@@ -6,50 +6,77 @@ part of 'cart.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
-      id: json['id'] as String,
-      checkoutUrl: json['checkoutUrl'] as String?,
-      cost: json['cost'] == null
+_Cart _$CartFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_Cart', json, ($checkedConvert) {
+  final val = _Cart(
+    id: $checkedConvert('id', (v) => v as String),
+    checkoutUrl: $checkedConvert('checkoutUrl', (v) => v as String?),
+    cost: $checkedConvert(
+      'cost',
+      (v) => v == null ? null : CartCost.fromJson(v as Map<String, dynamic>),
+    ),
+    totalQuantity: $checkedConvert(
+      'totalQuantity',
+      (v) => (v as num?)?.toInt(),
+    ),
+    discountAllocations: $checkedConvert(
+      'discountAllocations',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => e == null
+                ? null
+                : CartDiscountAllocation.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    discountCodes: $checkedConvert(
+      'discountCodes',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => e == null
+                ? null
+                : CartDiscountCode.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    createdAt: $checkedConvert('createdAt', (v) => v as String?),
+    attributes: $checkedConvert(
+      'attributes',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => e == null
+                ? null
+                : Attribute.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    ),
+    buyerIdentity: $checkedConvert(
+      'buyerIdentity',
+      (v) => v == null
           ? null
-          : CartCost.fromJson(json['cost'] as Map<String, dynamic>),
-      totalQuantity: (json['totalQuantity'] as num?)?.toInt(),
-      discountAllocations: (json['discountAllocations'] as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : CartDiscountAllocation.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      discountCodes: (json['discountCodes'] as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : CartDiscountCode.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      createdAt: json['createdAt'] as String?,
-      attributes: (json['attributes'] as List<dynamic>?)
-          ?.map((e) =>
-              e == null ? null : Attribute.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      buyerIdentity: json['buyerIdentity'] == null
-          ? null
-          : CartBuyerIdentity.fromJson(
-              json['buyerIdentity'] as Map<String, dynamic>),
-      note: json['note'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      lines: JsonHelper.lines(json['lines']),
-    );
+          : CartBuyerIdentity.fromJson(v as Map<String, dynamic>),
+    ),
+    note: $checkedConvert('note', (v) => v as String?),
+    updatedAt: $checkedConvert('updatedAt', (v) => v as String?),
+    lines: $checkedConvert('lines', (v) => JsonHelper.lines(v)),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'checkoutUrl': instance.checkoutUrl,
-      'cost': instance.cost?.toJson(),
-      'totalQuantity': instance.totalQuantity,
-      'discountAllocations':
-          instance.discountAllocations?.map((e) => e?.toJson()).toList(),
-      'discountCodes': instance.discountCodes?.map((e) => e?.toJson()).toList(),
-      'createdAt': instance.createdAt,
-      'attributes': instance.attributes?.map((e) => e?.toJson()).toList(),
-      'buyerIdentity': instance.buyerIdentity?.toJson(),
-      'note': instance.note,
-      'updatedAt': instance.updatedAt,
-      'lines': instance.lines.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$CartToJson(_Cart instance) => <String, dynamic>{
+  'id': instance.id,
+  'checkoutUrl': instance.checkoutUrl,
+  'cost': instance.cost?.toJson(),
+  'totalQuantity': instance.totalQuantity,
+  'discountAllocations': instance.discountAllocations
+      ?.map((e) => e?.toJson())
+      .toList(),
+  'discountCodes': instance.discountCodes?.map((e) => e?.toJson()).toList(),
+  'createdAt': instance.createdAt,
+  'attributes': instance.attributes?.map((e) => e?.toJson()).toList(),
+  'buyerIdentity': instance.buyerIdentity?.toJson(),
+  'note': instance.note,
+  'updatedAt': instance.updatedAt,
+  'lines': instance.lines.map((e) => e.toJson()).toList(),
+};

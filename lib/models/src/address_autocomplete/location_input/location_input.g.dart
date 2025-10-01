@@ -6,13 +6,16 @@ part of 'location_input.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LocationInputImpl _$$LocationInputImplFromJson(Map<String, dynamic> json) =>
-    _$LocationInputImpl(
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
-    );
+_LocationInput _$LocationInputFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_LocationInput', json, ($checkedConvert) {
+      final val = _LocationInput(
+        latitude: $checkedConvert('latitude', (v) => (v as num?)?.toDouble()),
+        longitude: $checkedConvert('longitude', (v) => (v as num?)?.toDouble()),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LocationInputImplToJson(_$LocationInputImpl instance) =>
+Map<String, dynamic> _$LocationInputToJson(_LocationInput instance) =>
     <String, dynamic>{
       'latitude': instance.latitude,
       'longitude': instance.longitude,

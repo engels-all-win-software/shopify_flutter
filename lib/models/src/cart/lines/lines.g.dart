@@ -6,13 +6,19 @@ part of 'lines.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LinesImpl _$$LinesImplFromJson(Map<String, dynamic> json) => _$LinesImpl(
-      lines: (json['lines'] as List<dynamic>)
-          .map((e) => Line.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+_Lines _$LinesFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_Lines', json, ($checkedConvert) {
+      final val = _Lines(
+        lines: $checkedConvert(
+          'lines',
+          (v) => (v as List<dynamic>)
+              .map((e) => Line.fromJson(e as Map<String, dynamic>))
+              .toList(),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$LinesImplToJson(_$LinesImpl instance) =>
-    <String, dynamic>{
-      'lines': instance.lines.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$LinesToJson(_Lines instance) => <String, dynamic>{
+  'lines': instance.lines.map((e) => e.toJson()).toList(),
+};

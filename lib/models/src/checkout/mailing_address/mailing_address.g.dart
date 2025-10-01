@@ -6,29 +6,31 @@ part of 'mailing_address.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$MailingAddressImpl _$$MailingAddressImplFromJson(Map<String, dynamic> json) =>
-    _$MailingAddressImpl(
-      id: json['id'] as String,
-      address1: json['address1'] as String,
-      city: json['city'] as String,
-      country: json['country'] as String,
-      zip: json['zip'] as String?,
-      lastName: json['lastName'] as String?,
-      name: json['name'] as String?,
-      firstName: json['firstName'] as String?,
-      address2: json['address2'] as String?,
-      company: json['company'] as String?,
-      countryCodeV2: json['countryCodeV2'] as String?,
-      formattedArea: json['formattedArea'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
-      phone: json['phone'] as String?,
-      province: json['province'] as String?,
-      provinceCode: json['provinceCode'] as String?,
-    );
+_MailingAddress _$MailingAddressFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_MailingAddress', json, ($checkedConvert) {
+      final val = _MailingAddress(
+        id: $checkedConvert('id', (v) => v as String),
+        address1: $checkedConvert('address1', (v) => v as String),
+        city: $checkedConvert('city', (v) => v as String),
+        country: $checkedConvert('country', (v) => v as String),
+        zip: $checkedConvert('zip', (v) => v as String?),
+        lastName: $checkedConvert('lastName', (v) => v as String?),
+        name: $checkedConvert('name', (v) => v as String?),
+        firstName: $checkedConvert('firstName', (v) => v as String?),
+        address2: $checkedConvert('address2', (v) => v as String?),
+        company: $checkedConvert('company', (v) => v as String?),
+        countryCodeV2: $checkedConvert('countryCodeV2', (v) => v as String?),
+        formattedArea: $checkedConvert('formattedArea', (v) => v as String?),
+        latitude: $checkedConvert('latitude', (v) => (v as num?)?.toDouble()),
+        longitude: $checkedConvert('longitude', (v) => (v as num?)?.toDouble()),
+        phone: $checkedConvert('phone', (v) => v as String?),
+        province: $checkedConvert('province', (v) => v as String?),
+        provinceCode: $checkedConvert('provinceCode', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$MailingAddressImplToJson(
-        _$MailingAddressImpl instance) =>
+Map<String, dynamic> _$MailingAddressToJson(_MailingAddress instance) =>
     <String, dynamic>{
       'id': instance.id,
       'address1': instance.address1,

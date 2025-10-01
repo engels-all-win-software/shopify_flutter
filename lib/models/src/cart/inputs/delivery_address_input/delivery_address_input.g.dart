@@ -6,19 +6,27 @@ part of 'delivery_address_input.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DeliveryAddressInputImpl _$$DeliveryAddressInputImplFromJson(
-        Map<String, dynamic> json) =>
-    _$DeliveryAddressInputImpl(
-      customerAddressId: json['customerAddressId'] as String?,
-      deliveryAddress: json['deliveryAddress'] == null
+_DeliveryAddressInput _$DeliveryAddressInputFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_DeliveryAddressInput', json, ($checkedConvert) {
+  final val = _DeliveryAddressInput(
+    customerAddressId: $checkedConvert(
+      'customerAddressId',
+      (v) => v as String?,
+    ),
+    deliveryAddress: $checkedConvert(
+      'deliveryAddress',
+      (v) => v == null
           ? null
-          : MailingAddressInput.fromJson(
-              json['deliveryAddress'] as Map<String, dynamic>),
-    );
+          : MailingAddressInput.fromJson(v as Map<String, dynamic>),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$DeliveryAddressInputImplToJson(
-        _$DeliveryAddressInputImpl instance) =>
-    <String, dynamic>{
-      'customerAddressId': instance.customerAddressId,
-      'deliveryAddress': instance.deliveryAddress?.toJson(),
-    };
+Map<String, dynamic> _$DeliveryAddressInputToJson(
+  _DeliveryAddressInput instance,
+) => <String, dynamic>{
+  'customerAddressId': instance.customerAddressId,
+  'deliveryAddress': instance.deliveryAddress?.toJson(),
+};

@@ -6,14 +6,17 @@ part of 'shopify_image.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShopifyImageImpl _$$ShopifyImageImplFromJson(Map<String, dynamic> json) =>
-    _$ShopifyImageImpl(
-      originalSrc: json['originalSrc'] as String,
-      id: json['id'] as String,
-      altText: json['altText'] as String?,
-    );
+_ShopifyImage _$ShopifyImageFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_ShopifyImage', json, ($checkedConvert) {
+      final val = _ShopifyImage(
+        originalSrc: $checkedConvert('originalSrc', (v) => v as String),
+        id: $checkedConvert('id', (v) => v as String),
+        altText: $checkedConvert('altText', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$ShopifyImageImplToJson(_$ShopifyImageImpl instance) =>
+Map<String, dynamic> _$ShopifyImageToJson(_ShopifyImage instance) =>
     <String, dynamic>{
       'originalSrc': instance.originalSrc,
       'id': instance.id,

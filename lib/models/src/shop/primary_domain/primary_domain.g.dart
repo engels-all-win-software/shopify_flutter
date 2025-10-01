@@ -6,14 +6,17 @@ part of 'primary_domain.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PrimaryDomainImpl _$$PrimaryDomainImplFromJson(Map<String, dynamic> json) =>
-    _$PrimaryDomainImpl(
-      host: json['host'] as String?,
-      sslEnabled: json['sslEnabled'] as bool?,
-      url: json['url'] as String?,
-    );
+_PrimaryDomain _$PrimaryDomainFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_PrimaryDomain', json, ($checkedConvert) {
+      final val = _PrimaryDomain(
+        host: $checkedConvert('host', (v) => v as String?),
+        sslEnabled: $checkedConvert('sslEnabled', (v) => v as bool?),
+        url: $checkedConvert('url', (v) => v as String?),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$PrimaryDomainImplToJson(_$PrimaryDomainImpl instance) =>
+Map<String, dynamic> _$PrimaryDomainToJson(_PrimaryDomain instance) =>
     <String, dynamic>{
       'host': instance.host,
       'sslEnabled': instance.sslEnabled,

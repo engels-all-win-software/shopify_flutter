@@ -6,54 +6,69 @@ part of 'product_variant_checkout.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductVariantCheckoutImpl _$$ProductVariantCheckoutImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ProductVariantCheckoutImpl(
-      title: json['title'] as String,
-      availableForSale: json['availableForSale'] as bool,
-      requiresShipping: json['requiresShipping'] as bool,
-      id: json['id'] as String,
-      priceV2: json['priceV2'] == null
-          ? null
-          : PriceV2.fromJson(json['priceV2'] as Map<String, dynamic>),
-      price: json['price'] == null
-          ? null
-          : PriceV2.fromJson(json['price'] as Map<String, dynamic>),
-      sku: json['sku'] as String?,
-      image: json['image'] == null
-          ? null
-          : ShopifyImage.fromJson(json['image'] as Map<String, dynamic>),
-      compareAtPrice: json['compareAtPrice'] == null
-          ? null
-          : PriceV2.fromJson(json['compareAtPrice'] as Map<String, dynamic>),
-      weight: (json['weight'] as num?)?.toDouble(),
-      weightUnit: json['weightUnit'] as String?,
-      quantityAvailable: (json['quantityAvailable'] as num?)?.toInt() ?? 0,
-      product: json['product'] == null
-          ? null
-          : Product.fromJson(json['product'] as Map<String, dynamic>),
-      selectedOptions: (json['selectedOptions'] as List<dynamic>?)
+_ProductVariantCheckout _$ProductVariantCheckoutFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_ProductVariantCheckout', json, ($checkedConvert) {
+  final val = _ProductVariantCheckout(
+    title: $checkedConvert('title', (v) => v as String),
+    availableForSale: $checkedConvert('availableForSale', (v) => v as bool),
+    requiresShipping: $checkedConvert('requiresShipping', (v) => v as bool),
+    id: $checkedConvert('id', (v) => v as String),
+    priceV2: $checkedConvert(
+      'priceV2',
+      (v) => v == null ? null : PriceV2.fromJson(v as Map<String, dynamic>),
+    ),
+    price: $checkedConvert(
+      'price',
+      (v) => v == null ? null : PriceV2.fromJson(v as Map<String, dynamic>),
+    ),
+    sku: $checkedConvert('sku', (v) => v as String?),
+    image: $checkedConvert(
+      'image',
+      (v) =>
+          v == null ? null : ShopifyImage.fromJson(v as Map<String, dynamic>),
+    ),
+    compareAtPrice: $checkedConvert(
+      'compareAtPrice',
+      (v) => v == null ? null : PriceV2.fromJson(v as Map<String, dynamic>),
+    ),
+    weight: $checkedConvert('weight', (v) => (v as num?)?.toDouble()),
+    weightUnit: $checkedConvert('weightUnit', (v) => v as String?),
+    quantityAvailable: $checkedConvert(
+      'quantityAvailable',
+      (v) => (v as num?)?.toInt() ?? 0,
+    ),
+    product: $checkedConvert(
+      'product',
+      (v) => v == null ? null : Product.fromJson(v as Map<String, dynamic>),
+    ),
+    selectedOptions: $checkedConvert(
+      'selectedOptions',
+      (v) =>
+          (v as List<dynamic>?)
               ?.map((e) => SelectedOption.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-    );
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$ProductVariantCheckoutImplToJson(
-        _$ProductVariantCheckoutImpl instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'availableForSale': instance.availableForSale,
-      'requiresShipping': instance.requiresShipping,
-      'id': instance.id,
-      'priceV2': instance.priceV2?.toJson(),
-      'price': instance.price?.toJson(),
-      'sku': instance.sku,
-      'image': instance.image?.toJson(),
-      'compareAtPrice': instance.compareAtPrice?.toJson(),
-      'weight': instance.weight,
-      'weightUnit': instance.weightUnit,
-      'quantityAvailable': instance.quantityAvailable,
-      'product': instance.product?.toJson(),
-      'selectedOptions':
-          instance.selectedOptions.map((e) => e.toJson()).toList(),
-    };
+Map<String, dynamic> _$ProductVariantCheckoutToJson(
+  _ProductVariantCheckout instance,
+) => <String, dynamic>{
+  'title': instance.title,
+  'availableForSale': instance.availableForSale,
+  'requiresShipping': instance.requiresShipping,
+  'id': instance.id,
+  'priceV2': instance.priceV2?.toJson(),
+  'price': instance.price?.toJson(),
+  'sku': instance.sku,
+  'image': instance.image?.toJson(),
+  'compareAtPrice': instance.compareAtPrice?.toJson(),
+  'weight': instance.weight,
+  'weightUnit': instance.weightUnit,
+  'quantityAvailable': instance.quantityAvailable,
+  'product': instance.product?.toJson(),
+  'selectedOptions': instance.selectedOptions.map((e) => e.toJson()).toList(),
+};

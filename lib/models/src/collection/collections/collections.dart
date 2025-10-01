@@ -8,7 +8,7 @@ part 'collections.g.dart';
 @freezed
 
 /// The Collections class
-class Collections with _$Collections {
+abstract class Collections with _$Collections {
   /// The Collections constructor
   factory Collections(
       {required List<Collection> collectionList,

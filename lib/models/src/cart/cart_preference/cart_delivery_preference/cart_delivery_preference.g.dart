@@ -6,23 +6,31 @@ part of 'cart_delivery_preference.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CartDeliveryPreferenceImpl _$$CartDeliveryPreferenceImplFromJson(
-        Map<String, dynamic> json) =>
-    _$CartDeliveryPreferenceImpl(
-      deliveryMethod: json['deliveryMethod'] as String?,
-      pickupHandle: (json['pickupHandle'] as List<dynamic>?)
-          ?.map((e) => e as String?)
-          .toList(),
-      coordinates: json['coordinates'] == null
+_CartDeliveryPreference _$CartDeliveryPreferenceFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate('_CartDeliveryPreference', json, ($checkedConvert) {
+  final val = _CartDeliveryPreference(
+    deliveryMethod: $checkedConvert('deliveryMethod', (v) => v as String?),
+    pickupHandle: $checkedConvert(
+      'pickupHandle',
+      (v) => (v as List<dynamic>?)?.map((e) => e as String?).toList(),
+    ),
+    coordinates: $checkedConvert(
+      'coordinates',
+      (v) => v == null
           ? null
           : CartDeliveryCoordinatesPreference.fromJson(
-              json['coordinates'] as Map<String, dynamic>),
-    );
+              v as Map<String, dynamic>,
+            ),
+    ),
+  );
+  return val;
+});
 
-Map<String, dynamic> _$$CartDeliveryPreferenceImplToJson(
-        _$CartDeliveryPreferenceImpl instance) =>
-    <String, dynamic>{
-      'deliveryMethod': instance.deliveryMethod,
-      'pickupHandle': instance.pickupHandle,
-      'coordinates': instance.coordinates?.toJson(),
-    };
+Map<String, dynamic> _$CartDeliveryPreferenceToJson(
+  _CartDeliveryPreference instance,
+) => <String, dynamic>{
+  'deliveryMethod': instance.deliveryMethod,
+  'pickupHandle': instance.pickupHandle,
+  'coordinates': instance.coordinates?.toJson(),
+};

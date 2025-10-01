@@ -6,20 +6,32 @@ part of 'tokanized_checkout.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TokanizedCheckoutImpl _$$TokanizedCheckoutImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TokanizedCheckoutImpl(
-      paymentId: json['id'] as String,
-      amountV2: PriceV2.fromJson(json['amountV2'] as Map<String, dynamic>),
-      test: json['test'] as bool,
-      ready: json['ready'] as bool,
-      nextActionUrl: json['nextActionUrl'] as String?,
-      errorMessage: json['errorMessage'] as String?,
-      checkoutId: _checkoutIdFromJson(json['checkout'] as Map<String, dynamic>),
+_TokanizedCheckout _$TokanizedCheckoutFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      '_TokanizedCheckout',
+      json,
+      ($checkedConvert) {
+        final val = _TokanizedCheckout(
+          paymentId: $checkedConvert('id', (v) => v as String),
+          amountV2: $checkedConvert(
+            'amountV2',
+            (v) => PriceV2.fromJson(v as Map<String, dynamic>),
+          ),
+          test: $checkedConvert('test', (v) => v as bool),
+          ready: $checkedConvert('ready', (v) => v as bool),
+          nextActionUrl: $checkedConvert('nextActionUrl', (v) => v as String?),
+          errorMessage: $checkedConvert('errorMessage', (v) => v as String?),
+          checkoutId: $checkedConvert(
+            'checkout',
+            (v) => _checkoutIdFromJson(v as Map<String, dynamic>),
+          ),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'paymentId': 'id', 'checkoutId': 'checkout'},
     );
 
-Map<String, dynamic> _$$TokanizedCheckoutImplToJson(
-        _$TokanizedCheckoutImpl instance) =>
+Map<String, dynamic> _$TokanizedCheckoutToJson(_TokanizedCheckout instance) =>
     <String, dynamic>{
       'id': instance.paymentId,
       'amountV2': instance.amountV2.toJson(),

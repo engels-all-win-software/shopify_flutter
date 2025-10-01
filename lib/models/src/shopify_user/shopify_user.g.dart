@@ -6,27 +6,36 @@ part of 'shopify_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShopifyUserImpl _$$ShopifyUserImplFromJson(Map<String, dynamic> json) =>
-    _$ShopifyUserImpl(
-      address: json['address'] == null
-          ? null
-          : Addresses.fromJson(json['address'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] as String?,
-      displayName: json['displayName'] as String?,
-      email: json['email'] as String?,
-      firstName: json['firstName'] as String?,
-      id: json['id'] as String?,
-      lastName: json['lastName'] as String?,
-      phone: json['phone'] as String?,
-      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      defaultAddress: json['defaultAddress'] == null
-          ? null
-          : Address.fromJson(json['defaultAddress'] as Map<String, dynamic>),
-    );
+_ShopifyUser _$ShopifyUserFromJson(Map<String, dynamic> json) =>
+    $checkedCreate('_ShopifyUser', json, ($checkedConvert) {
+      final val = _ShopifyUser(
+        addresses: $checkedConvert(
+          'addresses',
+          (v) =>
+              v == null ? null : Addresses.fromJson(v as Map<String, dynamic>),
+        ),
+        createdAt: $checkedConvert('createdAt', (v) => v as String?),
+        displayName: $checkedConvert('displayName', (v) => v as String?),
+        email: $checkedConvert('email', (v) => v as String?),
+        firstName: $checkedConvert('firstName', (v) => v as String?),
+        id: $checkedConvert('id', (v) => v as String?),
+        lastName: $checkedConvert('lastName', (v) => v as String?),
+        phone: $checkedConvert('phone', (v) => v as String?),
+        tags: $checkedConvert(
+          'tags',
+          (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+        ),
+        defaultAddress: $checkedConvert(
+          'defaultAddress',
+          (v) => v == null ? null : Address.fromJson(v as Map<String, dynamic>),
+        ),
+      );
+      return val;
+    });
 
-Map<String, dynamic> _$$ShopifyUserImplToJson(_$ShopifyUserImpl instance) =>
+Map<String, dynamic> _$ShopifyUserToJson(_ShopifyUser instance) =>
     <String, dynamic>{
-      'address': instance.address?.toJson(),
+      'addresses': instance.addresses?.toJson(),
       'createdAt': instance.createdAt,
       'displayName': instance.displayName,
       'email': instance.email,
