@@ -17,25 +17,25 @@ part 'product.g.dart';
 
 /// The product
 @freezed
-@JsonSerializable(createFactory: false)
-abstract class Product with _$Product {
+sealed class Product with _$Product {
   const Product._();
 
   /// The product constructor
-  factory Product({
+  @JsonSerializable(explicitToJson: true)
+  const factory Product({
     required String title,
     required String id,
     required bool availableForSale,
     required String createdAt,
-    required List<ProductVariant> productVariants,
+    @ProductsVariantConverter() required List<ProductVariant> productVariants,
     required String productType,
-    required List<String> tags,
-    required List<ShopifyImage> images,
-    required List<Option> options,
+    @TagsConverter() required List<String> tags,
+    @ImageListConverter() required List<ShopifyImage> images,
+    @OptionListConverter() required List<Option> options,
     required String vendor,
-    required List<ProductMedia> media,
-    required List<Metafield> metafields,
-    List<AssociatedCollections>? collectionList,
+    @MediaListConverter() required List<ProductMedia> media,
+    @MetafieldListConverter() required List<Metafield> metafields,
+    @CollectionListConverter() List<AssociatedCollections>? collectionList,
     String? cursor,
     String? onlineStoreUrl,
     String? description,
@@ -132,58 +132,56 @@ abstract class Product with _$Product {
 
   /// The product from graphjson
   factory Product.fromGraphJson(Map<String, dynamic> json) => Product(
-        collectionList: _getCollectionList(json),
+        collectionList: CollectionListConverter().fromJson(json),
         id: json['node']?['id'] ?? '',
         title: json['node']?['title'] ?? '',
         availableForSale: json['node']?['availableForSale'],
         createdAt: json['node']?['createdAt'],
         description: json['node']?['description'] ?? '',
-        productVariants: _getProductVariants(json),
+        productVariants: ProductsVariantConverter().fromJson(json),
         descriptionHtml: json['node']?['descriptionHtml'] ?? '',
         handle: json['node']?['handle'] ?? '',
         onlineStoreUrl: json['node']?['onlineStoreUrl'] ?? '',
         productType: json['node']?['productType'] ?? '',
-        tags: _getTags(json['node']),
-        images: _getImageList(json),
+        tags: TagsConverter().fromJson(json['node']),
+        images: ImageListConverter().fromJson(json),
         cursor: json['cursor'],
-        options: _getOptionList(json),
+        options: OptionListConverter().fromJson(json),
         vendor: json['node']?['vendor'],
-        media: _getMediaList(json),
-        metafields: _getMetafieldList(json),
+        media: MediaListConverter().fromJson(json),
+        metafields: MetafieldListConverter().fromJson(json),
       );
 
-  // factory Product.fromJson(Map<String, dynamic> json) =>
-  //     _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 
-  /// The product to json
-  Map<String, dynamic> toJson() => _$ProductToJson(this);
+  @override
+  Map<String, dynamic> toJson() {
+    final data = _$ProductToJson(this as _Product);
 
-  /// The product from json
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
-      collectionList: _getCollectionList(json),
-      id: json['id'] ?? '',
-      title: json['title'] ?? '',
-      availableForSale: json['availableForSale'],
-      createdAt: json['createdAt'],
-      description: json['description'] ?? '',
-      productVariants: _getProductVariants(json),
-      descriptionHtml: json['descriptionHtml'] ?? '',
-      handle: json['handle'] ?? '',
-      onlineStoreUrl: json['onlineStoreUrl'] ?? '',
-      productType: json['productType'] ?? '',
-      tags: _getTags(json),
-      images: _getImageList(json),
-      cursor: json['cursor'],
-      options: _getOptionList(json),
-      vendor: json['vendor'],
-      media: _getMediaList(json),
-      metafields: _getMetafieldList(json),
-    );
+    // Enrich with computed properties for serialization
+    data['price'] = price;
+    data['formattedPrice'] = formattedPrice;
+    data['compareAtPrice'] = compareAtPrice;
+    data['compareAtPriceFormatted'] = compareAtPriceFormatted;
+    data['hasComparablePrice'] = hasComparablePrice;
+    data['image'] = image;
+    data['currencyCode'] = currencyCode;
+    data['isAvailableForSale'] = isAvailableForSale;
+
+    return data;
   }
+}
 
-  static List<ProductVariant> _getProductVariants(Map<String, dynamic> json) {
+/// Products variant converter class
+class ProductsVariantConverter implements JsonConverter<List<ProductVariant>, dynamic> {
+  /// Products variant converter constructor
+  const ProductsVariantConverter();
+
+  @override
+  List<ProductVariant> fromJson(dynamic rawJson) {
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['variants'] == null) return [];
         return ((json['node']?['variants']?['edges'] ?? []) as List)
@@ -231,9 +229,22 @@ abstract class Product with _$Product {
     }
   }
 
-  static List<Option> _getOptionList(Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<ProductVariant> object) {
+    return object.map((element) => element.toJson()).toList();
+  }
+}
+
+/// Option list converter class
+class OptionListConverter implements JsonConverter<List<Option>, dynamic> {
+  /// Option list converter constructor
+  const OptionListConverter();
+
+  @override
+  List<Option> fromJson(dynamic rawJson) {
     List<Option> optionList = [];
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['options'] == null) return [];
         return ((json['node']?['options'] ?? []) as List)
@@ -252,9 +263,22 @@ abstract class Product with _$Product {
     return optionList;
   }
 
-  static List<String> _getTags(Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<Option> object) {
+    return object.map((element) => element.toJson()).toList();
+  }
+}
+
+/// Tags converter class
+class TagsConverter implements JsonConverter<List<String>, dynamic> {
+  /// Tags converter constructor
+  const TagsConverter();
+
+  @override
+  List<String> fromJson(dynamic rawJson) {
     List<String> tags = [];
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json['tags'] == null) return tags;
       json['tags']?.forEach((e) {
         if (e != null) tags.add(e);
@@ -265,9 +289,21 @@ abstract class Product with _$Product {
     return tags;
   }
 
-  static List<AssociatedCollections> _getCollectionList(
-      Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<String> object) {
+    return object;
+  }
+}
+
+/// Collection list converter class
+class CollectionListConverter implements JsonConverter<List<AssociatedCollections>, dynamic> {
+  /// Collection list converter constructor
+  const CollectionListConverter();
+
+  @override
+  List<AssociatedCollections> fromJson(dynamic rawJson) {
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['collections'] == null) return [];
         return ((json['node']?['collections']?['edges'] ?? []) as List)
@@ -296,8 +332,21 @@ abstract class Product with _$Product {
     }
   }
 
-  static List<ShopifyImage> _getImageList(Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<AssociatedCollections> object) {
+    return object.map((element) => element.toJson()).toList();
+  }
+}
+
+/// Image list converter class
+class ImageListConverter implements JsonConverter<List<ShopifyImage>, dynamic> {
+  /// Image list converter constructor
+  const ImageListConverter();
+
+  @override
+  List<ShopifyImage> fromJson(dynamic rawJson) {
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['images'] == null) return [];
         return ((json['node']?['images']?['edges'] ?? []) as List)
@@ -323,8 +372,21 @@ abstract class Product with _$Product {
     }
   }
 
-  static List<ProductMedia> _getMediaList(Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<ShopifyImage> object) {
+    return object.map((element) => element.toJson()).toList();
+  }
+}
+
+/// Media list converter class
+class MediaListConverter implements JsonConverter<List<ProductMedia>, dynamic> {
+  /// Media list converter constructor
+  const MediaListConverter();
+
+  @override
+  List<ProductMedia> fromJson(dynamic rawJson) {
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['media'] == null) return [];
         return ((json['node']?['media']?['edges'] ?? []) as List)
@@ -350,8 +412,21 @@ abstract class Product with _$Product {
     }
   }
 
-  static List<Metafield> _getMetafieldList(Map<String, dynamic> json) {
+  @override
+  dynamic toJson(List<ProductMedia> object) {
+    return object.map((element) => element.toJson()).toList();
+  }
+}
+
+/// Metafield list converter class
+class MetafieldListConverter implements JsonConverter<List<Metafield>, dynamic> {
+  /// Metafield list converter constructor
+  const MetafieldListConverter();
+
+  @override
+  List<Metafield> fromJson(dynamic rawJson) {
     try {
+      final json = Map<String, dynamic>.from(rawJson);
       if (json.containsKey('node')) {
         if (json['node']?['metafields'] == null) return [];
         final metafields = ((json['node']?['metafields'] ?? []) as List)
@@ -377,5 +452,10 @@ abstract class Product with _$Product {
       log("_getMetafieldList error: $e");
       return [];
     }
+  }
+
+  @override
+  dynamic toJson(List<Metafield> object) {
+    return object.map((element) => element.toJson()).toList();
   }
 }

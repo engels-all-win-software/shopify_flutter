@@ -11,16 +11,19 @@ part of 'product.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$Product {
 
- String get title; String get id; bool get availableForSale; String get createdAt; List<ProductVariant> get productVariants; String get productType; List<String> get tags; List<ShopifyImage> get images; List<Option> get options; String get vendor; List<ProductMedia> get media; List<Metafield> get metafields; List<AssociatedCollections>? get collectionList; String? get cursor; String? get onlineStoreUrl; String? get description; String? get descriptionHtml; String? get handle;
+ String get title; String get id; bool get availableForSale; String get createdAt;@ProductsVariantConverter() List<ProductVariant> get productVariants; String get productType;@TagsConverter() List<String> get tags;@ImageListConverter() List<ShopifyImage> get images;@OptionListConverter() List<Option> get options; String get vendor;@MediaListConverter() List<ProductMedia> get media;@MetafieldListConverter() List<Metafield> get metafields;@CollectionListConverter() List<AssociatedCollections>? get collectionList; String? get cursor; String? get onlineStoreUrl; String? get description; String? get descriptionHtml; String? get handle;
 /// Create a copy of Product
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ProductCopyWith<Product> get copyWith => _$ProductCopyWithImpl<Product>(this as Product, _$identity);
 
+  /// Serializes this Product to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is Product&&(identical(other.title, title) || other.title == title)&&(identical(other.id, id) || other.id == id)&&(identical(other.availableForSale, availableForSale) || other.availableForSale == availableForSale)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other.productVariants, productVariants)&&(identical(other.productType, productType) || other.productType == productType)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.images, images)&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.vendor, vendor) || other.vendor == vendor)&&const DeepCollectionEquality().equals(other.media, media)&&const DeepCollectionEquality().equals(other.metafields, metafields)&&const DeepCollectionEquality().equals(other.collectionList, collectionList)&&(identical(other.cursor, cursor) || other.cursor == cursor)&&(identical(other.onlineStoreUrl, onlineStoreUrl) || other.onlineStoreUrl == onlineStoreUrl)&&(identical(other.description, description) || other.description == description)&&(identical(other.descriptionHtml, descriptionHtml) || other.descriptionHtml == descriptionHtml)&&(identical(other.handle, handle) || other.handle == handle));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,title,id,availableForSale,createdAt,const DeepCollectionEquality().hash(productVariants),productType,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(images),const DeepCollectionEquality().hash(options),vendor,const DeepCollectionEquality().hash(media),const DeepCollectionEquality().hash(metafields),const DeepCollectionEquality().hash(collectionList),cursor,onlineStoreUrl,description,descriptionHtml,handle);
 
@@ -45,7 +48,7 @@ abstract mixin class $ProductCopyWith<$Res>  {
   factory $ProductCopyWith(Product value, $Res Function(Product) _then) = _$ProductCopyWithImpl;
 @useResult
 $Res call({
- String title, String id, bool availableForSale, String createdAt, List<ProductVariant> productVariants, String productType, List<String> tags, List<ShopifyImage> images, List<Option> options, String vendor, List<ProductMedia> media, List<Metafield> metafields, List<AssociatedCollections>? collectionList, String? cursor, String? onlineStoreUrl, String? description, String? descriptionHtml, String? handle
+ String title, String id, bool availableForSale, String createdAt,@ProductsVariantConverter() List<ProductVariant> productVariants, String productType,@TagsConverter() List<String> tags,@ImageListConverter() List<ShopifyImage> images,@OptionListConverter() List<Option> options, String vendor,@MediaListConverter() List<ProductMedia> media,@MetafieldListConverter() List<Metafield> metafields,@CollectionListConverter() List<AssociatedCollections>? collectionList, String? cursor, String? onlineStoreUrl, String? description, String? descriptionHtml, String? handle
 });
 
 
@@ -129,10 +132,7 @@ return $default(_that);case _:
 final _that = this;
 switch (_that) {
 case _Product():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -167,7 +167,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String id,  bool availableForSale,  String createdAt,  List<ProductVariant> productVariants,  String productType,  List<String> tags,  List<ShopifyImage> images,  List<Option> options,  String vendor,  List<ProductMedia> media,  List<Metafield> metafields,  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String id,  bool availableForSale,  String createdAt, @ProductsVariantConverter()  List<ProductVariant> productVariants,  String productType, @TagsConverter()  List<String> tags, @ImageListConverter()  List<ShopifyImage> images, @OptionListConverter()  List<Option> options,  String vendor, @MediaListConverter()  List<ProductMedia> media, @MetafieldListConverter()  List<Metafield> metafields, @CollectionListConverter()  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Product() when $default != null:
 return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_that.productVariants,_that.productType,_that.tags,_that.images,_that.options,_that.vendor,_that.media,_that.metafields,_that.collectionList,_that.cursor,_that.onlineStoreUrl,_that.description,_that.descriptionHtml,_that.handle);case _:
@@ -188,13 +188,10 @@ return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String id,  bool availableForSale,  String createdAt,  List<ProductVariant> productVariants,  String productType,  List<String> tags,  List<ShopifyImage> images,  List<Option> options,  String vendor,  List<ProductMedia> media,  List<Metafield> metafields,  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String id,  bool availableForSale,  String createdAt, @ProductsVariantConverter()  List<ProductVariant> productVariants,  String productType, @TagsConverter()  List<String> tags, @ImageListConverter()  List<ShopifyImage> images, @OptionListConverter()  List<Option> options,  String vendor, @MediaListConverter()  List<ProductMedia> media, @MetafieldListConverter()  List<Metafield> metafields, @CollectionListConverter()  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)  $default,) {final _that = this;
 switch (_that) {
 case _Product():
-return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_that.productVariants,_that.productType,_that.tags,_that.images,_that.options,_that.vendor,_that.media,_that.metafields,_that.collectionList,_that.cursor,_that.onlineStoreUrl,_that.description,_that.descriptionHtml,_that.handle);case _:
-  throw StateError('Unexpected subclass');
-
-}
+return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_that.productVariants,_that.productType,_that.tags,_that.images,_that.options,_that.vendor,_that.media,_that.metafields,_that.collectionList,_that.cursor,_that.onlineStoreUrl,_that.description,_that.descriptionHtml,_that.handle);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -208,7 +205,7 @@ return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String id,  bool availableForSale,  String createdAt,  List<ProductVariant> productVariants,  String productType,  List<String> tags,  List<ShopifyImage> images,  List<Option> options,  String vendor,  List<ProductMedia> media,  List<Metafield> metafields,  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String id,  bool availableForSale,  String createdAt, @ProductsVariantConverter()  List<ProductVariant> productVariants,  String productType, @TagsConverter()  List<String> tags, @ImageListConverter()  List<ShopifyImage> images, @OptionListConverter()  List<Option> options,  String vendor, @MediaListConverter()  List<ProductMedia> media, @MetafieldListConverter()  List<Metafield> metafields, @CollectionListConverter()  List<AssociatedCollections>? collectionList,  String? cursor,  String? onlineStoreUrl,  String? description,  String? descriptionHtml,  String? handle)?  $default,) {final _that = this;
 switch (_that) {
 case _Product() when $default != null:
 return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_that.productVariants,_that.productType,_that.tags,_that.images,_that.options,_that.vendor,_that.media,_that.metafields,_that.collectionList,_that.cursor,_that.onlineStoreUrl,_that.description,_that.descriptionHtml,_that.handle);case _:
@@ -221,17 +218,17 @@ return $default(_that.title,_that.id,_that.availableForSale,_that.createdAt,_tha
 
 /// @nodoc
 
-
+@JsonSerializable(explicitToJson: true)
 class _Product extends Product {
-   _Product({required this.title, required this.id, required this.availableForSale, required this.createdAt, required final  List<ProductVariant> productVariants, required this.productType, required final  List<String> tags, required final  List<ShopifyImage> images, required final  List<Option> options, required this.vendor, required final  List<ProductMedia> media, required final  List<Metafield> metafields, final  List<AssociatedCollections>? collectionList, this.cursor, this.onlineStoreUrl, this.description, this.descriptionHtml, this.handle}): _productVariants = productVariants,_tags = tags,_images = images,_options = options,_media = media,_metafields = metafields,_collectionList = collectionList,super._();
-  
+  const _Product({required this.title, required this.id, required this.availableForSale, required this.createdAt, @ProductsVariantConverter() required final  List<ProductVariant> productVariants, required this.productType, @TagsConverter() required final  List<String> tags, @ImageListConverter() required final  List<ShopifyImage> images, @OptionListConverter() required final  List<Option> options, required this.vendor, @MediaListConverter() required final  List<ProductMedia> media, @MetafieldListConverter() required final  List<Metafield> metafields, @CollectionListConverter() final  List<AssociatedCollections>? collectionList, this.cursor, this.onlineStoreUrl, this.description, this.descriptionHtml, this.handle}): _productVariants = productVariants,_tags = tags,_images = images,_options = options,_media = media,_metafields = metafields,_collectionList = collectionList,super._();
+  factory _Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 
 @override final  String title;
 @override final  String id;
 @override final  bool availableForSale;
 @override final  String createdAt;
  final  List<ProductVariant> _productVariants;
-@override List<ProductVariant> get productVariants {
+@override@ProductsVariantConverter() List<ProductVariant> get productVariants {
   if (_productVariants is EqualUnmodifiableListView) return _productVariants;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_productVariants);
@@ -239,21 +236,21 @@ class _Product extends Product {
 
 @override final  String productType;
  final  List<String> _tags;
-@override List<String> get tags {
+@override@TagsConverter() List<String> get tags {
   if (_tags is EqualUnmodifiableListView) return _tags;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tags);
 }
 
  final  List<ShopifyImage> _images;
-@override List<ShopifyImage> get images {
+@override@ImageListConverter() List<ShopifyImage> get images {
   if (_images is EqualUnmodifiableListView) return _images;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_images);
 }
 
  final  List<Option> _options;
-@override List<Option> get options {
+@override@OptionListConverter() List<Option> get options {
   if (_options is EqualUnmodifiableListView) return _options;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_options);
@@ -261,21 +258,21 @@ class _Product extends Product {
 
 @override final  String vendor;
  final  List<ProductMedia> _media;
-@override List<ProductMedia> get media {
+@override@MediaListConverter() List<ProductMedia> get media {
   if (_media is EqualUnmodifiableListView) return _media;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_media);
 }
 
  final  List<Metafield> _metafields;
-@override List<Metafield> get metafields {
+@override@MetafieldListConverter() List<Metafield> get metafields {
   if (_metafields is EqualUnmodifiableListView) return _metafields;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_metafields);
 }
 
  final  List<AssociatedCollections>? _collectionList;
-@override List<AssociatedCollections>? get collectionList {
+@override@CollectionListConverter() List<AssociatedCollections>? get collectionList {
   final value = _collectionList;
   if (value == null) return null;
   if (_collectionList is EqualUnmodifiableListView) return _collectionList;
@@ -295,14 +292,17 @@ class _Product extends Product {
 @pragma('vm:prefer-inline')
 _$ProductCopyWith<_Product> get copyWith => __$ProductCopyWithImpl<_Product>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$ProductToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _Product&&(identical(other.title, title) || other.title == title)&&(identical(other.id, id) || other.id == id)&&(identical(other.availableForSale, availableForSale) || other.availableForSale == availableForSale)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other._productVariants, _productVariants)&&(identical(other.productType, productType) || other.productType == productType)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._images, _images)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.vendor, vendor) || other.vendor == vendor)&&const DeepCollectionEquality().equals(other._media, _media)&&const DeepCollectionEquality().equals(other._metafields, _metafields)&&const DeepCollectionEquality().equals(other._collectionList, _collectionList)&&(identical(other.cursor, cursor) || other.cursor == cursor)&&(identical(other.onlineStoreUrl, onlineStoreUrl) || other.onlineStoreUrl == onlineStoreUrl)&&(identical(other.description, description) || other.description == description)&&(identical(other.descriptionHtml, descriptionHtml) || other.descriptionHtml == descriptionHtml)&&(identical(other.handle, handle) || other.handle == handle));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,title,id,availableForSale,createdAt,const DeepCollectionEquality().hash(_productVariants),productType,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_images),const DeepCollectionEquality().hash(_options),vendor,const DeepCollectionEquality().hash(_media),const DeepCollectionEquality().hash(_metafields),const DeepCollectionEquality().hash(_collectionList),cursor,onlineStoreUrl,description,descriptionHtml,handle);
 
@@ -319,7 +319,7 @@ abstract mixin class _$ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
   factory _$ProductCopyWith(_Product value, $Res Function(_Product) _then) = __$ProductCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String id, bool availableForSale, String createdAt, List<ProductVariant> productVariants, String productType, List<String> tags, List<ShopifyImage> images, List<Option> options, String vendor, List<ProductMedia> media, List<Metafield> metafields, List<AssociatedCollections>? collectionList, String? cursor, String? onlineStoreUrl, String? description, String? descriptionHtml, String? handle
+ String title, String id, bool availableForSale, String createdAt,@ProductsVariantConverter() List<ProductVariant> productVariants, String productType,@TagsConverter() List<String> tags,@ImageListConverter() List<ShopifyImage> images,@OptionListConverter() List<Option> options, String vendor,@MediaListConverter() List<ProductMedia> media,@MetafieldListConverter() List<Metafield> metafields,@CollectionListConverter() List<AssociatedCollections>? collectionList, String? cursor, String? onlineStoreUrl, String? description, String? descriptionHtml, String? handle
 });
 
 
